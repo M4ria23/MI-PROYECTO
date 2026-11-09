@@ -1,0 +1,4020 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MateRefuerzo</title>
+
+<style>
+:root{
+    --azul:#4568f5;
+    --azul2:#3659e5;
+    --fondo:#f5f7fb;
+    --texto:#25283b;
+    --gris:#747a90;
+    --borde:#e4e7ef;
+    --verde:#32b67a;
+    --rojo:#e45665;
+    --amarillo:#fff6dc;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:var(--fondo);
+    color:var(--texto);
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none !important;
+}
+
+/* LOGIN */
+
+.login-page{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:45% 55%;
+}
+
+.login-left{
+    background:linear-gradient(150deg,var(--azul),var(--azul2));
+    color:white;
+    padding:50px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+}
+
+.login-left h1{
+    font-size:36px;
+    margin-bottom:15px;
+}
+
+.login-left p{
+    line-height:1.7;
+}
+
+.illustration{
+    text-align:center;
+    font-size:105px;
+}
+
+.login-right{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:white;
+    padding:30px;
+}
+
+.form-box{
+    width:min(380px,100%);
+}
+
+.form-box h1{
+    margin-bottom:8px;
+}
+
+.form-box > p{
+    color:var(--gris);
+    margin-bottom:24px;
+}
+
+label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin:14px 0 6px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    border:1px solid #d8dce8;
+    border-radius:7px;
+    outline:none;
+    background:white;
+}
+
+.main-btn,
+.action{
+    border:0;
+    border-radius:7px;
+    background:var(--azul);
+    color:white;
+    font-weight:700;
+    padding:11px 15px;
+}
+
+.main-btn{
+    width:100%;
+    margin-top:18px;
+}
+
+.switch{
+    text-align:center;
+    margin-top:15px;
+    font-size:13px;
+}
+
+.link{
+    color:var(--azul);
+    cursor:pointer;
+}
+
+/* APP */
+
+.app{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    min-height:100vh;
+}
+
+.sidebar{
+    background:linear-gradient(#486cf5,#3d5fe7);
+    color:white;
+    padding:25px 15px;
+    display:flex;
+    flex-direction:column;
+}
+
+.sidebar h2{
+    margin:0 10px 25px;
+}
+
+.nav{
+    border:0;
+    background:transparent;
+    color:white;
+    padding:12px;
+    border-radius:7px;
+    margin-bottom:6px;
+    text-align:left;
+}
+
+.nav:hover,
+.nav.active{
+    background:rgba(255,255,255,.16);
+}
+
+.logout{
+    margin-top:auto;
+}
+
+.main{
+    min-width:0;
+}
+
+.topbar{
+    height:70px;
+    background:white;
+    border-bottom:1px solid var(--borde);
+    padding:0 30px;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+}
+
+.page{
+    display:none;
+    padding:30px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.page.active{
+    display:block;
+}
+
+.page h1{
+    margin-bottom:20px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--borde);
+    border-radius:10px;
+    padding:20px;
+    box-shadow:0 5px 16px rgba(0,0,0,.04);
+}
+
+.card small,
+.card p{
+    color:var(--gris);
+}
+
+.big-number{
+    font-size:28px;
+    font-weight:900;
+    margin:10px 0;
+}
+
+.progress{
+    height:7px;
+    background:#edf0f6;
+    border-radius:99px;
+    overflow:hidden;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    background:var(--azul);
+}
+
+.hero{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:1.4fr .6fr;
+    align-items:center;
+}
+
+.hero h2{
+    margin:10px 0;
+}
+
+.hero-art{
+    font-size:90px;
+    text-align:center;
+}
+
+.action{
+    margin-top:10px;
+}
+
+/* TEMAS */
+
+.topics{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.topic h3{
+    margin-bottom:8px;
+}
+
+.topic p{
+    font-size:14px;
+    min-height:42px;
+}
+
+/* GUIA */
+
+.guide-card{
+    max-width:780px;
+    margin:25px auto;
+}
+
+.guide-box{
+    background:#f4f6ff;
+    padding:16px;
+    border-radius:9px;
+    margin-top:15px;
+    line-height:1.6;
+}
+
+.guide-example{
+    background:#eef1ff;
+    color:#3345a4;
+    padding:16px;
+    border-radius:8px;
+    margin-top:15px;
+    font-weight:700;
+}
+
+.guide-tip{
+    background:var(--amarillo);
+    color:#785b00;
+    padding:14px;
+    border-radius:8px;
+    margin-top:12px;
+}
+
+/* PRACTICA */
+
+.practice-box{
+    max-width:780px;
+    margin:25px auto;
+}
+
+.practice-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.question{
+    font-size:25px;
+    font-weight:800;
+    text-align:center;
+    padding:30px;
+    margin:20px 0;
+    background:#fafbff;
+    border-radius:10px;
+}
+
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.option{
+    padding:14px;
+    background:white;
+    border:1px solid #dce0ec;
+    border-radius:7px;
+}
+
+.option.selected{
+    border-color:var(--azul);
+    background:#eef1ff;
+}
+
+.option.correct{
+    border-color:var(--verde);
+    background:#e8f8f0;
+}
+
+.option.wrong{
+    border-color:var(--rojo);
+    background:#fff0f2;
+}
+
+.feedback{
+    margin-top:12px;
+    min-height:25px;
+}
+
+.practice-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.secondary{
+    background:#667085;
+}
+
+/* PERFIL */
+
+.profile-grid{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:20px;
+}
+
+.profile-card{
+    text-align:center;
+}
+
+.avatar{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#eef0ff;
+    color:var(--azul);
+    display:grid;
+    place-items:center;
+    margin:auto;
+    font-size:34px;
+    font-weight:900;
+}
+
+/* ADMIN */
+
+.admin-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.admin-table th,
+.admin-table td{
+    padding:12px;
+    border-bottom:1px solid var(--borde);
+    text-align:left;
+    font-size:13px;
+}
+
+.admin-table th{
+    color:var(--gris);
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 9px;
+    border-radius:20px;
+    font-weight:700;
+}
+
+.good{
+    background:#e7f8ef;
+    color:#19885a;
+}
+
+.mid{
+    background:#fff5d9;
+    color:#9a6c00;
+}
+
+.bad{
+    background:#fff0f2;
+    color:#b43a49;
+}
+
+.detail{
+    color:var(--azul);
+    font-weight:700;
+    cursor:pointer;
+}
+
+.improve{
+    padding:12px;
+    border-radius:8px;
+    background:#fff5df;
+    margin-top:10px;
+}
+
+.admin-detail-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+/* MOVIL */
+
+@media(max-width:800px){
+
+    .login-page{
+        grid-template-columns:1fr;
+    }
+
+    .login-left{
+        display:none;
+    }
+
+    .app{
+        grid-template-columns:70px 1fr;
+    }
+
+    .sidebar h2{
+        font-size:0;
+    }
+
+    .sidebar h2:after{
+        content:"M";
+        font-size:20px;
+    }
+
+    .nav{
+        font-size:0;
+        text-align:center;
+    }
+
+    .cards,
+    .topics,
+    .hero,
+    .profile-grid,
+    .admin-detail-grid{
+        grid-template-columns:1fr;
+    }
+
+    .page{
+        padding:18px;
+    }
+
+    .options{
+        grid-template-columns:1fr;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<section id="loginPage" class="login-page">
+
+<div class="login-left">
+
+<div>
+<div class="logo">MateRefuerzo</div>
+<p>Aprende matemáticas de forma divertida</p>
+</div>
+
+<div class="illustration">
+👧📚👦
+</div>
+
+<div>
+
+<h1>Mejora tus matemáticas</h1>
+
+<p>
+Practica, aprende con guías sencillas,
+conoce tus resultados y descubre
+en qué temas debes mejorar.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="login-right">
+
+<!-- LOGIN -->
+
+<div id="loginForm" class="form-box">
+
+<h1>¡Hola! 👋</h1>
+
+<p>Ingresa para comenzar.</p>
+
+<label>Usuario</label>
+
+<input
+id="loginUser"
+placeholder="Ingresa tu usuario">
+
+<label>Contraseña</label>
+
+<input
+id="loginPassword"
+type="password"
+placeholder="Ingresa tu contraseña">
+
+<button
+class="main-btn"
+onclick="login()">
+
+Ingresar
+
+</button>
+
+<div class="switch">
+
+¿No tienes cuenta?
+
+<span
+class="link"
+onclick="showRegister()">
+
+Regístrate
+
+</span>
+
+</div>
+
+</div>
+
+
+<!-- REGISTRO -->
+
+<div
+id="registerForm"
+class="form-box hidden">
+
+<h1>Crear cuenta</h1>
+
+<p>Registra tus datos para comenzar.</p>
+
+<label>Nombre completo</label>
+
+<input
+id="regName"
+placeholder="Escribe tu nombre">
+
+<label>Usuario</label>
+
+<input
+id="regUser"
+placeholder="Crea un usuario">
+
+<label>Contraseña</label>
+
+<input
+id="regPassword"
+type="password"
+placeholder="Crea una contraseña">
+
+<label>Grado</label>
+
+<select id="regGrade">
+
+<option value="1°">
+1°
+</option>
+
+<option value="3°">
+3°
+</option>
+
+</select>
+
+<button
+class="main-btn"
+onclick="registerUser()">
+
+Crear cuenta
+
+</button>
+
+<div class="switch">
+
+¿Ya tienes cuenta?
+
+<span
+class="link"
+onclick="showLogin()">
+
+Iniciar sesión
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- APP ESTUDIANTE -->
+
+<div
+id="studentApp"
+class="app hidden">
+
+<aside class="sidebar">
+
+<h2>MateRefuerzo</h2>
+
+<button
+class="nav active"
+onclick="studentPage('inicio',this)">
+🏠 Inicio
+</button>
+
+<button
+class="nav"
+onclick="studentPage('practica',this)">
+✏️ Practicar
+</button>
+
+<button
+class="nav"
+onclick="studentPage('diagnostico',this)">
+📋 Diagnóstico
+</button>
+
+<button
+class="nav"
+onclick="studentPage('progreso',this)">
+📊 Progreso
+</button>
+
+<button
+class="nav"
+onclick="studentPage('logros',this)">
+🏆 Logros
+</button>
+
+<button
+class="nav"
+onclick="studentPage('perfil',this)">
+👤 Perfil
+</button>
+
+<button
+class="nav logout"
+onclick="logout()">
+↪ Salir
+</button>
+
+</aside>
+
+
+<main class="main">
+
+<div class="topbar">
+
+Hola,&nbsp;
+
+<b id="studentTopName"></b>
+
+&nbsp;👋
+
+</div>
+
+
+<!-- INICIO -->
+
+<section
+id="inicio"
+class="page active">
+
+<h1>
+¡Hola,
+<span id="studentName"></span>!
+👋
+</h1>
+
+
+<div class="cards">
+
+<div class="card">
+
+<small>Tu progreso</small>
+
+<div
+id="homeAccuracy"
+class="big-number">
+0%
+</div>
+
+<div class="progress">
+
+<span
+id="homeAccuracyBar"
+style="width:0%">
+</span>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<small>
+Ejercicios completados
+</small>
+
+<div
+id="homeDone"
+class="big-number">
+0
+</div>
+
+</div>
+
+
+<div class="card">
+
+<small>
+Mis logros
+</small>
+
+<div
+id="homeStars"
+class="big-number">
+0 ★
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card hero">
+
+<div>
+
+<small>
+🎯 Tu próximo reto
+</small>
+
+<h2 id="recommendedTopic">
+Práctica matemática
+</h2>
+
+<p id="recommendedText">
+
+Antes de practicar podrás estudiar
+una guía de aprendizaje.
+
+</p>
+
+<button
+class="action"
+onclick="startRecommendedPractice()">
+
+Comenzar →
+
+</button>
+
+</div>
+
+<div class="hero-art">
+📘🧮
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRACTICA -->
+
+<section
+id="practica"
+class="page">
+
+<h1>
+Práctica matemática
+</h1>
+
+<p style="margin-bottom:20px;color:#747a90">
+
+Cada tema incluye una guía de aprendizaje
+antes de comenzar los ejercicios.
+
+</p>
+
+<div
+id="topicsContainer"
+class="topics">
+</div>
+
+
+<!-- GUIA -->
+
+<div
+id="learningGuide"
+class="card guide-card hidden">
+
+<h2 id="guideTitle">
+📘 Guía de aprendizaje
+</h2>
+
+<div
+id="guideText"
+class="guide-box">
+</div>
+
+<div
+id="guideExample"
+class="guide-example">
+</div>
+
+<div
+id="guideTip"
+class="guide-tip">
+</div>
+
+<button
+class="action"
+onclick="beginPracticeAfterGuide()">
+
+▶ Empezar práctica
+
+</button>
+
+</div>
+
+
+<!-- EJERCICIOS -->
+
+<div
+id="practiceArea"
+class="card practice-box hidden">
+
+<div class="practice-header">
+
+<b id="practiceTopic"></b>
+
+<span id="practiceCount"></span>
+
+</div>
+
+<div class="progress">
+
+<span id="practiceProgress"></span>
+
+</div>
+
+<div
+id="practiceQuestion"
+class="question">
+</div>
+
+<div
+id="practiceOptions"
+class="options">
+</div>
+
+<div
+id="practiceFeedback"
+class="feedback">
+</div>
+
+<div class="practice-actions">
+
+<button
+class="action secondary"
+onclick="showLearningGuide(practiceTopicName)">
+
+📘 Ver guía
+
+</button>
+
+<button
+class="action"
+onclick="nextPractice()">
+
+Siguiente →
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DIAGNOSTICO -->
+
+<section
+id="diagnostico"
+class="page">
+
+<div
+id="diagnosticStart"
+class="card hero">
+
+<div>
+
+<h1>
+¡Conozcamos tu nivel!
+</h1>
+
+<p>
+Responde preguntas adaptadas
+a tu grado.
+</p>
+
+<button
+class="action"
+onclick="startDiagnostic()">
+
+Comenzar diagnóstico →
+
+</button>
+
+</div>
+
+<div class="hero-art">
+🤔📚❓
+</div>
+
+</div>
+
+
+<div
+id="diagnosticArea"
+class="card practice-box hidden">
+
+<div class="practice-header">
+
+<b>
+Diagnóstico matemático
+</b>
+
+<span id="diagnosticCount"></span>
+
+</div>
+
+<div class="progress">
+
+<span id="diagnosticProgress"></span>
+
+</div>
+
+<div
+id="diagnosticQuestion"
+class="question">
+</div>
+
+<div
+id="diagnosticOptions"
+class="options">
+</div>
+
+<button
+class="action"
+onclick="nextDiagnostic()">
+
+Siguiente →
+
+</button>
+
+</div>
+
+
+<div
+id="diagnosticResult"
+class="card hidden">
+
+<h2>
+Resultados del diagnóstico
+</h2>
+
+<div id="diagnosticScores">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROGRESO -->
+
+<section
+id="progreso"
+class="page">
+
+<h1>Mi progreso</h1>
+
+<div class="cards">
+
+<div class="card">
+
+<small>
+Precisión general
+</small>
+
+<div
+id="progressAccuracy"
+class="big-number">
+0%
+</div>
+
+</div>
+
+
+<div class="card">
+
+<small>
+Ejercicios completados
+</small>
+
+<div
+id="progressDone"
+class="big-number">
+0
+</div>
+
+</div>
+
+
+<div class="card">
+
+<small>
+Sesiones realizadas
+</small>
+
+<div
+id="progressSessions"
+class="big-number">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="card"
+style="margin-top:20px">
+
+<h3>
+Progreso por tema
+</h3>
+
+<div id="topicProgress">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LOGROS -->
+
+<section
+id="logros"
+class="page">
+
+<h1>Mis logros</h1>
+
+<div class="topics">
+
+<div
+class="card"
+style="text-align:center">
+
+<div style="font-size:55px">
+🏅
+</div>
+
+<h3>
+Primeros pasos
+</h3>
+
+<p>
+Completa tu primer ejercicio.
+</p>
+
+</div>
+
+
+<div
+class="card"
+style="text-align:center">
+
+<div style="font-size:55px">
+⭐
+</div>
+
+<h3>
+Estudiante constante
+</h3>
+
+<p>
+Completa 10 ejercicios.
+</p>
+
+</div>
+
+
+<div
+class="card"
+style="text-align:center">
+
+<div style="font-size:55px">
+🏆
+</div>
+
+<h3>
+Excelente trabajo
+</h3>
+
+<p>
+Obtén 80% o más
+en una práctica.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PERFIL -->
+
+<section
+id="perfil"
+class="page">
+
+<h1>Mi perfil</h1>
+
+<div class="profile-grid">
+
+<div
+class="card profile-card">
+
+<div
+id="profileAvatar"
+class="avatar">
+E
+</div>
+
+<h2 id="profileNameText">
+</h2>
+
+<p id="profileGradeText">
+</p>
+
+</div>
+
+
+<div class="card">
+
+<label>
+Nombre
+</label>
+
+<input id="profileName">
+
+<label>
+Grado
+</label>
+
+<select id="profileGrade">
+
+<option value="1°">
+1°
+</option>
+
+<option value="3°">
+3°
+</option>
+
+</select>
+
+<button
+class="action"
+onclick="saveProfile()">
+
+Guardar cambios
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- ADMINISTRADOR -->
+
+<div
+id="adminApp"
+class="app hidden">
+
+<aside class="sidebar">
+
+<h2>
+Administrador
+</h2>
+
+<button
+class="nav active">
+📊 Panel
+</button>
+
+<button
+class="nav logout"
+onclick="logout()">
+↪ Salir
+</button>
+
+</aside>
+
+
+<main class="main">
+
+<div class="topbar">
+Panel del administrador
+</div>
+
+
+<section class="page active">
+
+<h1>
+Panel del administrador
+</h1>
+
+
+<div class="cards">
+
+<div class="card">
+
+<small>
+Usuarios registrados
+</small>
+
+<div
+id="adminUsersCount"
+class="big-number">
+0
+</div>
+
+</div>
+
+
+<div class="card">
+
+<small>
+Promedio general
+</small>
+
+<div
+id="adminAverage"
+class="big-number">
+0%
+</div>
+
+</div>
+
+
+<div class="card">
+
+<small>
+Seguimiento académico
+</small>
+
+<div class="big-number">
+Activo
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="card"
+style="margin-top:20px">
+
+<h2 style="margin-bottom:15px">
+Estudiantes
+</h2>
+
+<div style="overflow:auto">
+
+<table class="admin-table">
+
+<thead>
+
+<tr>
+
+<th>Nombre</th>
+
+<th>Usuario</th>
+
+<th>Grado</th>
+
+<th>Ejercicios</th>
+
+<th>Nota</th>
+
+<th>Debe mejorar</th>
+
+<th></th>
+
+</tr>
+
+</thead>
+
+<tbody id="adminUsersTable">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div
+id="studentAdminDetail"
+class="card hidden"
+style="margin-top:20px">
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<script>
+
+/* BASE DE DATOS */
+
+let users =
+JSON.parse(
+localStorage.getItem(
+"mateRefuerzoUsuarios"
+)
+||
+"[]"
+);
+
+let currentUser = null;
+
+
+/* ADMIN OCULTO */
+
+const adminUser = {
+
+    user:"admin",
+
+    password:"admin123"
+
+};
+
+
+function saveUsers(){
+
+    localStorage.setItem(
+
+        "mateRefuerzoUsuarios",
+
+        JSON.stringify(users)
+
+    );
+
+}
+
+
+/* LOGIN */
+
+function showRegister(){
+
+    loginForm.classList.add(
+        "hidden"   );
+
+    registerForm.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+function showLogin(){
+
+    registerForm.classList.add(
+        "hidden"
+    );
+
+    loginForm.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+function registerUser(){
+
+    const name =
+    regName.value.trim();
+
+    const user =
+    regUser.value.trim();
+
+    const password =
+    regPassword.value;
+
+    const grade =
+    regGrade.value;
+
+
+    if(
+        !name
+        ||
+        !user
+        ||
+        !password
+    ){
+
+        alert(
+        "Completa todos los campos."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        user.toLowerCase()
+        ===
+        "admin"
+    ){
+
+        alert(
+        "Ese usuario no está disponible."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        users.some(
+        u =>
+        u.user.toLowerCase()
+        ===
+        user.toLowerCase()
+        )
+    ){
+
+        alert(
+        "Ese usuario ya existe."
+        );
+
+        return;
+
+    }
+
+
+    users.push({
+
+        id:Date.now(),
+
+        name:name,
+
+        user:user,
+
+        password:password,
+
+        grade:grade,
+
+        correct:0,
+
+        done:0,
+
+        sessions:0,
+
+        stars:0,
+
+        topics:{},
+
+        history:[]
+
+    });
+
+
+    saveUsers();
+
+
+    alert(
+    "Cuenta creada correctamente. Ahora inicia sesión."
+    );
+
+
+    loginUser.value = "";
+
+    loginPassword.value = "";
+
+    regName.value = "";
+
+    regUser.value = "";
+
+    regPassword.value = "";
+
+
+    showLogin();
+
+}
+
+
+function login(){
+
+    const user =
+    loginUser.value.trim();
+
+    const password =
+    loginPassword.value;
+
+
+    if(
+        !user
+        ||
+        !password
+    ){
+
+        alert(
+        "Escribe tu usuario y contraseña."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        user
+        ===
+        adminUser.user
+        &&
+        password
+        ===
+        adminUser.password
+    ){
+
+        loginPage.classList.add(
+        "hidden"
+        );
+
+        adminApp.classList.remove(
+        "hidden"
+        );
+
+        renderAdmin();
+
+        return;
+
+    }
+
+
+    const found =
+    users.find(
+
+        u =>
+        u.user === user
+        &&
+        u.password === password
+
+    );
+
+
+    if(!found){
+
+        alert(
+        "Usuario o contraseña incorrectos. Si no tienes cuenta, regístrate."
+        );
+
+        return;
+
+    }
+
+
+    currentUser = found;
+
+
+    loginPage.classList.add(
+        "hidden"
+    );
+
+    studentApp.classList.remove(
+        "hidden"
+    );
+
+
+    renderStudent();
+
+}
+
+
+function logout(){
+
+    currentUser = null;
+
+
+    studentApp.classList.add(
+        "hidden"
+    );
+
+    adminApp.classList.add(
+        "hidden"
+    );
+
+    loginPage.classList.remove(
+        "hidden"
+    );
+
+
+    loginUser.value = "";
+
+    loginPassword.value = "";
+
+}
+
+
+/* NAVEGACION */
+
+function studentPage(
+id,
+button
+){
+
+    document
+    .querySelectorAll(
+    "#studentApp .page"
+    )
+    .forEach(
+        page =>
+        page.classList.remove(
+            "active"
+        )
+    );
+
+
+    document
+    .getElementById(id)
+    .classList.add(
+        "active"
+    );
+
+
+    document
+    .querySelectorAll(
+    "#studentApp .nav"
+    )
+    .forEach(
+        nav =>
+        nav.classList.remove(
+            "active"
+        )
+    );
+
+
+    if(button){
+
+        button.classList.add(
+            "active"
+        );
+
+    }
+
+
+    renderStudent();
+
+}
+
+
+/* GUIAS DE APRENDIZAJE */
+
+const learningGuides = {
+
+
+"1°":{
+
+
+"Sumas":{
+
+title:"📘 Guía de Sumas",
+
+text:
+"Sumar significa juntar dos o más cantidades. Para resolver una suma podemos contar todos los elementos juntos.",
+
+example:
+"Ejemplo: 3 + 2 = 5",
+
+tip:
+"💡 Consejo: puedes usar tus dedos, fichas o dibujos para ayudarte a contar."
+
+},
+
+
+"Restas":{
+
+title:"📘 Guía de Restas",
+
+text:
+"Restar significa quitar una cantidad de otra. Primero observamos cuántos elementos tenemos y después quitamos algunos.",
+
+example:
+"Ejemplo: 7 - 3 = 4",
+
+tip:
+"💡 Consejo: imagina que tienes 7 dulces y regalas 3. Te quedan 4."
+
+},
+
+
+"Números":{
+
+title:"📘 Guía de Números",
+
+text:
+"Los números nos ayudan a contar y ordenar cantidades. También podemos saber cuál número es mayor, menor, anterior o siguiente.",
+
+example:
+"Ejemplo: después del número 5 viene el número 6.",
+
+tip:
+"💡 Consejo: practica contando juguetes, lápices, dedos o cualquier objeto que tengas cerca."
+
+}
+
+},
+
+
+"3°":{
+
+
+"Multiplicación":{
+
+title:"📘 Guía de Multiplicación",
+
+text:
+"Multiplicar es sumar varias veces la misma cantidad. Podemos usar las tablas de multiplicar para resolver las operaciones más rápido.",
+
+example:
+"Ejemplo: 4 × 3 = 3 + 3 + 3 + 3 = 12",
+
+tip:
+"💡 Consejo: aprende primero las tablas del 2, 3, 4 y 5."
+
+},
+
+
+"División":{
+
+title:"📘 Guía de División",
+
+text:
+"Dividir significa repartir una cantidad en grupos iguales. Debemos encontrar cuántos elementos quedan en cada grupo.",
+
+example:
+"Ejemplo: 12 ÷ 3 = 4 porque 3 × 4 = 12.",
+
+tip:
+"💡 Consejo: usa las tablas de multiplicar para ayudarte a resolver divisiones."
+
+},
+
+
+"Problemas":{
+
+title:"📘 Guía para Resolver Problemas",
+
+text:
+"Para resolver un problema matemático debemos leer con cuidado, identificar los números y decidir qué operación necesitamos utilizar.",
+
+example:
+"Ejemplo: 4 bolsas con 3 dulces cada una → 4 × 3 = 12 dulces.",
+
+tip:
+"💡 Consejo: lee el problema dos veces y busca palabras importantes."
+
+},
+
+
+"Geometría":{
+
+title:"📘 Guía de Geometría",
+
+text:
+"La geometría estudia las figuras. El perímetro es la suma de todos los lados. El área representa el espacio que ocupa una figura.",
+
+example:
+"Ejemplo: cuadrado de lado 4 → perímetro = 4 + 4 + 4 + 4 = 16.",
+
+tip:
+"💡 Consejo: dibuja la figura antes de hacer la operación."
+
+}
+
+}
+
+};
+
+
+/* EJERCICIOS */
+
+const exercisesByGrade = {
+
+
+"1°":{
+
+topics:[
+
+["Sumas","➕","Sumas sencillas hasta 20."],
+
+["Restas","➖","Restas sencillas hasta 20."],
+
+["Números","🔢","Reconoce números y cantidades."]
+
+],
+
+
+exercises:{
+
+
+"Sumas":[
+
+["3 + 2 = ?",["4","5","6","7"],1],
+
+["5 + 4 = ?",["7","8","9","10"],2],
+
+["6 + 3 = ?",["8","9","10","11"],1],
+
+["7 + 2 = ?",["8","9","10","11"],1],
+
+["4 + 5 = ?",["8","9","10","11"],1]
+
+],
+
+
+"Restas":[
+
+["8 - 3 = ?",["4","5","6","7"],1],
+
+["10 - 4 = ?",["5","6","7","8"],1],
+
+["9 - 2 = ?",["6","7","8","9"],1],
+
+["7 - 5 = ?",["1","2","3","4"],1],
+
+["6 - 1 = ?",["4","5","6","7"],1]
+
+],
+
+
+"Números":[
+
+[
+"¿Qué número viene después del 7?",
+["6","7","8","9"],
+2
+],
+
+[
+"¿Qué número es mayor?",
+["3","8","2","1"],
+1
+],
+
+[
+"¿Cuántos dedos hay en una mano?",
+["3","4","5","6"],
+2
+],
+
+[
+"¿Qué número viene antes del 10?",
+["8","9","10","11"],
+1
+],
+
+[
+"¿Cuál es el número menor?",
+["2","5","7","9"],
+0
+]
+
+]
+
+},
+
+
+diagnostic:[
+
+["2 + 3 = ?",["4","5","6","7"],1,"Sumas"],
+
+["6 - 2 = ?",["3","4","5","6"],1,"Restas"],
+
+[
+"¿Qué número viene después del 4?",
+["3","4","5","6"],
+2,
+"Números"
+],
+
+["5 + 4 = ?",["8","9","10","11"],1,"Sumas"],
+
+["9 - 3 = ?",["5","6","7","8"],1,"Restas"],
+
+[
+"¿Cuál número es mayor?",
+["2","7","4","1"],
+1,
+"Números"
+],
+
+["3 + 6 = ?",["8","9","10","11"],1,"Sumas"],
+
+["8 - 5 = ?",["2","3","4","5"],1,"Restas"],
+
+[
+"¿Qué número viene antes del 6?",
+["4","5","6","7"],
+1,
+"Números"
+],
+
+["4 + 4 = ?",["6","7","8","9"],2,"Sumas"]
+
+]
+
+},
+
+
+"3°":{
+
+topics:[
+
+[
+"Multiplicación",
+"✖️",
+"Practica las tablas de multiplicar."
+],
+
+[
+"División",
+"➗",
+"Practica divisiones exactas."
+],
+
+[
+"Problemas",
+"🧠",
+"Resuelve problemas matemáticos."
+],
+
+[
+"Geometría",
+"📐",
+"Área y perímetro básico."
+]
+
+],
+
+
+exercises:{
+
+
+"Multiplicación":[
+
+["6 × 4 = ?",["20","22","24","26"],2],
+
+["7 × 5 = ?",["30","35","40","45"],1],
+
+["8 × 3 = ?",["21","24","27","30"],1],
+
+["9 × 4 = ?",["32","36","40","45"],1],
+
+["7 × 8 = ?",["54","56","58","64"],1]
+
+],
+
+
+"División":[
+
+["24 ÷ 6 = ?",["3","4","5","6"],1],
+
+["35 ÷ 5 = ?",["5","6","7","8"],2],
+
+["42 ÷ 7 = ?",["5","6","7","8"],1],
+
+["36 ÷ 4 = ?",["8","9","10","11"],1],
+
+["40 ÷ 8 = ?",["4","5","6","7"],1]
+
+],
+
+
+"Problemas":[
+
+[
+"Ana tiene 4 bolsas con 3 dulces cada una. ¿Cuántos dulces tiene?",
+["7","10","12","14"],
+2
+],
+
+[
+"Hay 15 lápices y se reparten entre 3 niños. ¿Cuántos recibe cada uno?",
+["3","4","5","6"],
+2
+],
+
+[
+"Pedro compra 5 paquetes con 2 galletas cada uno. ¿Cuántas galletas tiene?",
+["7","8","10","12"],
+2
+],
+
+[
+"Hay 24 fichas en 6 grupos iguales. ¿Cuántas hay por grupo?",
+["3","4","5","6"],
+1
+],
+
+[
+"Una caja tiene 8 filas de 3 objetos. ¿Cuántos objetos hay?",
+["18","21","24","27"],
+2
+]
+
+],
+
+
+"Geometría":[
+
+[
+"Perímetro de un cuadrado de lado 4 cm",
+["8","12","16","20"],
+2
+],
+
+[
+"Área de un rectángulo de 5 × 3",
+["8","12","15","20"],
+2
+],
+
+[
+"Perímetro de un rectángulo de 6 × 2",
+["8","12","16","20"],
+2
+],
+
+[
+"Área de un cuadrado de lado 4",
+["8","12","16","20"],
+2
+],
+
+[
+"¿Cuántos lados tiene un triángulo?",
+["2","3","4","5"],
+1
+]
+
+]
+
+},
+
+
+diagnostic:[
+
+[
+"6 × 4 = ?",
+["20","22","24","26"],
+2,
+"Multiplicación"
+],
+
+[
+"30 ÷ 5 = ?",
+["4","5","6","7"],
+2,
+"División"
+],
+
+[
+"Ana tiene 3 bolsas con 4 dulces. ¿Cuántos tiene?",
+["7","10","12","15"],
+2,
+"Problemas"
+],
+
+[
+"Perímetro de un cuadrado de lado 4",
+["8","12","16","20"],
+2,
+"Geometría"
+],
+
+[
+"7 × 8 = ?",
+["54","56","58","64"],
+1,
+"Multiplicación"
+],
+
+[
+"45 ÷ 5 = ?",
+["7","8","9","10"],
+2,
+"División"
+],
+
+[
+"5 cajas con 2 lápices cada una son...",
+["7","8","10","12"],
+2,
+"Problemas"
+],
+
+[
+"Área de un rectángulo de 5 × 3",
+["8","12","15","20"],
+2,
+"Geometría"
+],
+
+[
+"9 × 3 = ?",
+["24","27","30","36"],
+1,
+"Multiplicación"
+],
+
+[
+"36 ÷ 6 = ?",
+["4","5","6","7"],
+2,
+"División"
+]
+
+]
+
+}
+
+};
+
+
+/* GRADO */
+
+function getGradeData(){
+
+    return exercisesByGrade[
+        currentUser.grade
+    ];
+
+}
+
+
+/* ESTUDIANTE */
+
+function renderStudent(){
+
+    if(!currentUser){
+        return;
+    }
+
+
+    const accuracy =
+    currentUser.done
+
+    ?
+
+    Math.round(
+        currentUser.correct
+        /
+        currentUser.done
+        *
+        100
+    )
+
+    :
+
+    0;
+
+
+    studentName.textContent =
+    currentUser.name;
+
+
+    studentTopName.textContent =
+    currentUser.name;
+
+
+    homeAccuracy.textContent =
+    accuracy + "%";
+
+
+    homeAccuracyBar.style.width =
+    accuracy + "%";
+
+
+    homeDone.textContent =
+    currentUser.done;
+
+
+    homeStars.textContent =
+    currentUser.stars
+    +
+    " ★";
+
+
+    progressAccuracy.textContent =
+    accuracy
+    +
+    "%";
+
+
+    progressDone.textContent =
+    currentUser.done;
+
+
+    progressSessions.textContent =
+    currentUser.sessions;
+
+
+    profileName.value =
+    currentUser.name;
+
+
+    profileNameText.textContent =
+    currentUser.name;
+
+
+    profileGrade.value =
+    currentUser.grade;
+
+
+    profileGradeText.textContent =
+    "Estudiante · "
+    +
+    currentUser.grade;
+
+
+    profileAvatar.textContent =
+    currentUser.name
+    .charAt(0)
+    .toUpperCase();
+
+
+    renderTopics();
+
+    renderTopicProgress();
+
+    renderRecommendation();
+
+}
+
+
+/* TEMAS */
+
+function renderTopics(){
+
+    const data =
+    getGradeData();
+
+
+    topicsContainer.innerHTML =
+
+    data.topics
+
+    .map(
+
+        tema =>
+
+        `
+
+        <div class="card topic">
+
+        <h3>
+
+        ${tema[1]}
+        ${tema[0]}
+
+        </h3>
+
+        <p>
+        ${tema[2]}
+        </p>
+
+        <button
+        class="action"
+        onclick="startPractice('${tema[0]}')">
+
+        📘 Ver guía y practicar
+
+        </button>
+
+        </div>
+
+        `
+
+    )
+
+    .join("");
+
+}
+
+
+/* RECOMENDACION */
+
+function renderRecommendation(){
+
+    const data =
+    getGradeData();
+
+
+    let topic =
+    data.topics[0][0];
+
+
+    const results =
+    Object.entries(
+        currentUser.topics
+    );
+
+
+    if(results.length){
+
+        results.sort(
+            (a,b) =>
+            a[1] - b[1]
+        );
+
+
+        topic =
+        results[0][0];
+
+    }
+
+
+    recommendedTopic.textContent =
+    topic;
+
+
+    recommendedText.textContent =
+
+    "Primero estudia la guía y luego realiza los ejercicios para mejorar.";
+
+}
+
+
+function startRecommendedPractice(){
+
+    startPractice(
+        recommendedTopic.textContent
+    );
+
+}
+
+
+/* GUIA */
+
+function showLearningGuide(topic){
+
+    practiceTopicName =
+    topic;
+
+
+    const guide =
+    learningGuides[
+        currentUser.grade
+    ][
+        topic
+    ];
+
+
+    practiceArea
+    .classList
+    .add(
+        "hidden"
+    );
+
+
+    learningGuide
+    .classList
+    .remove(
+        "hidden"
+    );
+
+
+    guideTitle.textContent =
+    guide.title;
+
+
+    guideText.textContent =
+    guide.text;
+
+
+    guideExample.textContent =
+    guide.example;
+
+
+    guideTip.textContent =
+    guide.tip;
+
+}
+
+
+function beginPracticeAfterGuide(){
+
+    learningGuide
+    .classList
+    .add(
+        "hidden"
+    );
+
+
+    practiceArea
+    .classList
+    .remove(
+        "hidden"
+    );
+
+
+    renderPractice();
+
+}
+
+
+/* PRACTICA */
+
+let practiceTopicName =
+"";
+
+let practiceIndex =
+0;
+
+let practiceCorrect =
+0;
+
+let practiceSelected =
+null;
+
+
+function startPractice(topic){
+
+    studentPage(
+        "practica"
+    );
+
+
+    practiceTopicName =
+    topic;
+
+
+    practiceIndex =
+    0;
+
+
+    practiceCorrect =
+    0;
+
+
+    practiceSelected =
+    null;
+
+
+    showLearningGuide(
+        topic
+    );
+
+}
+
+
+function renderPractice(){
+
+    const list =
+    getGradeData()
+    .exercises[
+        practiceTopicName
+    ];
+
+
+    const question =
+    list[
+        practiceIndex
+    ];
+
+
+    practiceSelected =
+    null;
+
+
+    practiceTopic.textContent =
+    practiceTopicName;
+
+
+    practiceCount.textContent =
+
+    "Ejercicio "
+    +
+    (practiceIndex + 1)
+    +
+    " de "
+    +
+    list.length;
+
+
+    practiceProgress.style.width =
+
+    (
+        (
+            practiceIndex + 1
+        )
+        /
+        list.length
+        *
+        100
+    )
+
+    +
+    "%";
+
+
+    practiceQuestion.textContent =
+    question[0];
+
+
+    practiceFeedback.innerHTML =
+    "";
+
+
+    practiceOptions.innerHTML =
+
+    question[1]
+
+    .map(
+
+        (option,index) =>
+
+        `
+
+        <button
+        class="option"
+        onclick="selectPractice(${index},this)">
+
+        ${option}
+
+        </button>
+
+        `
+
+    )
+
+    .join("");
+
+}
+
+
+function selectPractice(
+index,
+button
+){
+
+    if(
+        practiceSelected
+        !==
+        null
+    ){
+
+        return;
+
+    }
+
+
+    practiceSelected =
+    index;
+
+
+    const question =
+
+    getGradeData()
+    .exercises[
+        practiceTopicName
+    ][
+        practiceIndex
+    ];
+
+
+    const correct =
+    index
+    ===
+    question[2];
+
+
+    document
+    .querySelectorAll(
+        "#practiceOptions .option"
+    )
+    .forEach(
+
+        (option,i) => {
+
+            if(
+                i === question[2]
+            ){
+
+                option.classList.add(
+                    "correct"
+                );
+
+            }
+
+            else if(
+                i === index
+            ){
+
+                option.classList.add(
+                    "wrong"
+                );
+
+            }
+
+        }
+
+    );
+
+
+    currentUser.done++;
+
+
+    if(correct){
+
+        currentUser.correct++;
+
+        practiceCorrect++;
+
+
+        practiceFeedback.innerHTML =
+
+        "<span style='color:#19885a'>✓ ¡Correcto! Muy bien.</span>";
+
+    }
+
+    else{
+
+        practiceFeedback.innerHTML =
+
+        "<span style='color:#b43a49'>✕ Respuesta correcta: "
+        +
+        question[1][
+            question[2]
+        ]
+        +
+        "</span>";
+
+    }
+
+
+    saveUsers();
+
+    renderStudent();
+
+}
+
+
+function nextPractice(){
+
+    if(
+        practiceSelected
+        ===
+        null
+    ){
+
+        alert(
+            "Selecciona una respuesta."
+        );
+
+        return;
+
+    }
+
+
+    const list =
+
+    getGradeData()
+    .exercises[
+        practiceTopicName
+    ];
+
+
+    if(
+        practiceIndex
+        <
+        list.length - 1
+    ){
+
+        practiceIndex++;
+
+        renderPractice();
+
+        return;
+
+    }
+
+
+    const percent =
+
+    Math.round(
+
+        practiceCorrect
+        /
+        list.length
+        *
+        100
+
+    );
+
+
+    currentUser.sessions++;
+
+
+    currentUser
+    .topics[
+        practiceTopicName
+    ]
+    =
+    percent;
+
+
+    if(
+        percent >= 80
+    ){
+
+        currentUser.stars++;
+
+    }
+
+
+    currentUser
+    .history
+    .push({
+
+        topic:
+        practiceTopicName,
+
+        correct:
+        practiceCorrect,
+
+        total:
+        list.length,
+
+        percent:
+        percent,
+
+        date:
+        new Date()
+        .toLocaleString()
+
+    });
+
+
+    saveUsers();
+
+
+    alert(
+
+        "Práctica terminada: "
+        +
+        practiceCorrect
+        +
+        "/"
+        +
+        list.length
+        +
+        " correctas"
+
+    );
+
+
+    practiceArea
+    .classList
+    .add(
+        "hidden"
+    );
+
+
+    renderStudent();
+
+}
+
+
+/* DIAGNOSTICO */
+
+let diagnosticIndex =
+0;
+
+let diagnosticSelected =
+null;
+
+let diagnosticAnswers =
+[];
+
+
+function startDiagnostic(){
+
+    diagnosticStart
+    .classList
+    .add(
+        "hidden"
+    );
+
+
+    diagnosticResult
+    .classList
+    .add(
+        "hidden"
+    );
+
+
+    diagnosticArea
+    .classList
+    .remove(
+        "hidden"
+    );
+
+
+    diagnosticIndex =
+    0;
+
+
+    diagnosticAnswers =
+    [];
+
+
+    renderDiagnostic();
+
+}
+
+
+function renderDiagnostic(){
+
+    diagnosticSelected =
+    null;
+
+
+    const list =
+    getGradeData()
+    .diagnostic;
+
+
+    const question =
+    list[
+        diagnosticIndex
+    ];
+
+
+    diagnosticCount.textContent =
+
+    "Pregunta "
+    +
+    (diagnosticIndex + 1)
+    +
+    " de "
+    +
+    list.length;
+
+
+    diagnosticProgress.style.width =
+
+    (
+        (
+            diagnosticIndex + 1
+        )
+        /
+        list.length
+        *
+        100
+    )
+
+    +
+    "%";
+
+
+    diagnosticQuestion.textContent =
+    question[0];
+
+
+    diagnosticOptions.innerHTML =
+
+    question[1]
+
+    .map(
+
+        (option,index) =>
+
+        `
+
+        <button
+        class="option"
+        onclick="selectDiagnostic(${index},this)">
+
+        ${option}
+
+        </button>
+
+        `
+
+    )
+
+    .join("");
+
+}
+
+
+function selectDiagnostic(
+index,
+button
+){
+
+    diagnosticSelected =
+    index;
+
+
+    document
+    .querySelectorAll(
+        "#diagnosticOptions .option"
+    )
+    .forEach(
+
+        option =>
+        option.classList.remove(
+            "selected"
+        )
+
+    );
+
+
+    button.classList.add(
+        "selected"
+    );
+
+}
+
+
+function nextDiagnostic(){
+
+    if(
+        diagnosticSelected
+        ===
+        null
+    ){
+
+        alert(
+            "Selecciona una respuesta."
+        );
+
+        return;
+
+    }
+
+
+    diagnosticAnswers.push(
+        diagnosticSelected
+    );
+
+
+    const list =
+    getGradeData()
+    .diagnostic;
+
+
+    if(
+        diagnosticIndex
+        <
+        list.length - 1
+    ){
+
+        diagnosticIndex++;
+
+        renderDiagnostic();
+
+        return;
+
+    }
+
+
+    finishDiagnostic();
+
+}
+
+
+function finishDiagnostic(){
+
+    diagnosticArea
+    .classList
+    .add(
+        "hidden"
+    );
+
+
+    diagnosticResult
+    .classList
+    .remove(
+        "hidden"
+    );
+
+
+    const results =
+    {};
+
+
+    const list =
+    getGradeData()
+    .diagnostic;
+
+
+    list.forEach(
+
+        (question,index) => {
+
+            const topic =
+            question[3];
+
+
+            if(
+                !results[
+                    topic
+                ]
+            ){
+
+                results[
+                    topic
+                ] = {
+
+                    correct:0,
+
+                    total:0
+
+                };
+
+            }
+
+
+            results[
+                topic
+            ]
+            .total++;
+
+
+            currentUser.done++;
+
+
+            if(
+
+                diagnosticAnswers[
+                    index
+                ]
+
+                ===
+
+                question[2]
+
+            ){
+
+                results[
+                    topic
+                ]
+                .correct++;
+
+
+                currentUser.correct++;
+
+            }
+
+        }
+
+    );
+
+
+    diagnosticScores.innerHTML =
+
+    Object.entries(
+        results
+    )
+
+    .map(
+
+        ([topic,data]) => {
+
+            const percent =
+
+            Math.round(
+
+                data.correct
+                /
+                data.total
+                *
+                100
+
+            );
+
+
+            currentUser
+            .topics[
+                topic
+            ]
+            =
+            percent;
+
+
+            return `
+
+            <div
+            style="margin:15px 0">
+
+            <div
+            style="
+            display:flex;
+            justify-content:space-between
+            ">
+
+            <b>
+            ${topic}
+            </b>
+
+            <span>
+            ${percent}%
+            </span>
+
+            </div>
+
+            <div
+            class="progress"
+            style="margin-top:7px">
+
+            <span
+            style="width:${percent}%">
+            </span>
+
+            </div>
+
+            </div>
+
+            `;
+
+        }
+
+    )
+
+    .join("");
+
+
+    currentUser.sessions++;
+
+
+    saveUsers();
+
+    renderStudent();
+
+}
+
+
+/* PROGRESO */
+
+function renderTopicProgress(){
+
+    const entries =
+    Object.entries(
+        currentUser.topics
+    );
+
+
+    if(
+        entries.length
+        ===
+        0
+    ){
+
+        topicProgress.innerHTML =
+
+        "<p style='margin-top:15px'>Todavía no hay resultados.</p>";
+
+
+        return;
+
+    }
+
+
+    topicProgress.innerHTML =
+
+    entries
+
+    .map(
+
+        ([topic,percent]) =>
+
+        `
+
+        <div
+        style="margin:15px 0">
+
+        <div
+        style="
+        display:flex;
+        justify-content:space-between;
+        margin-bottom:7px
+        ">
+
+        <b>
+        ${topic}
+        </b>
+
+        <span>
+        ${percent}%
+        </span>
+
+        </div>
+
+        <div class="progress">
+
+        <span
+        style="width:${percent}%">
+        </span>
+
+        </div>
+
+        </div>
+
+        `
+
+    )
+
+    .join("");
+
+}
+
+
+/* PERFIL */
+
+function saveProfile(){
+
+    const oldGrade =
+    currentUser.grade;
+
+
+    currentUser.name =
+
+    profileName.value.trim()
+
+    ||
+
+    currentUser.name;
+
+
+    currentUser.grade =
+    profileGrade.value;
+
+
+    if(
+        oldGrade
+        !==
+        currentUser.grade
+    ){
+
+        currentUser.topics =
+        {};
+
+    }
+
+
+    saveUsers();
+
+    renderStudent();
+
+
+    alert(
+        "Perfil actualizado."
+    );
+
+}
+
+
+/* ADMIN */
+
+function renderAdmin(){
+
+    adminUsersCount.textContent =
+    users.length;
+
+
+    let totalAccuracy =
+    0;
+
+
+    users.forEach(
+
+        user => {
+
+            const accuracy =
+
+            user.done
+
+            ?
+
+            Math.round(
+
+                user.correct
+                /
+                user.done
+                *
+                100
+
+            )
+
+            :
+
+            0;
+
+
+            totalAccuracy +=
+            accuracy;
+
+        }
+
+    );
+
+
+    adminAverage.textContent =
+
+    (
+
+        users.length
+
+        ?
+
+        Math.round(
+            totalAccuracy
+            /
+            users.length
+        )
+
+        :
+
+        0
+
+    )
+
+    +
+
+    "%";
+
+
+    adminUsersTable.innerHTML =
+
+    users
+
+    .map(
+
+        user => {
+
+            const accuracy =
+
+            user.done
+
+            ?
+
+            Math.round(
+
+                user.correct
+                /
+                user.done
+                *
+                100
+
+            )
+
+            :
+
+            0;
+
+
+            const weak =
+            getWeakestTopic(
+                user
+            );
+
+
+            let cssClass =
+            "bad";
+
+
+            if(
+                accuracy >= 80
+            ){
+
+                cssClass =
+                "good";
+
+            }
+
+            else if(
+                accuracy >= 60
+            ){
+
+                cssClass =
+                "mid";
+
+            }
+
+
+            return `
+
+            <tr>
+
+            <td>
+            <b>
+            ${user.name}
+            </b>
+            </td>
+
+            <td>
+            ${user.user}
+            </td>
+
+            <td>
+            ${user.grade}
+            </td>
+
+            <td>
+            ${user.done}
+            </td>
+
+            <td>
+
+            <span
+            class="badge ${cssClass}">
+
+            ${accuracy}%
+
+            </span>
+
+            </td>
+
+            <td>
+
+            ${
+                weak
+
+                ?
+
+                weak.topic
+                +
+                " ("
+                +
+                weak.percent
+                +
+                "%)"
+
+                :
+
+                "Sin datos"
+            }
+
+            </td>
+
+            <td>
+
+            <span
+            class="detail"
+            onclick="showStudentDetail(${user.id})">
+
+            Ver detalle →
+
+            </span>
+
+            </td>
+
+            </tr>
+
+            `;
+
+        }
+
+    )
+
+    .join("");
+
+}
+
+
+function getWeakestTopic(
+user
+){
+
+    const topics =
+    Object.entries(
+        user.topics
+    );
+
+
+    if(
+        topics.length
+        ===
+        0
+    ){
+
+        return null;
+
+    }
+
+
+    topics.sort(
+        (a,b) =>
+        a[1] - b[1]
+    );
+
+
+    return {
+
+        topic:
+        topics[0][0],
+
+        percent:
+        topics[0][1]
+
+    };
+
+}
+
+
+function showStudentDetail(
+id
+){
+
+    const user =
+    users.find(
+
+        student =>
+        student.id === id
+
+    );
+
+
+    if(!user){
+        return;
+    }
+
+
+    const accuracy =
+
+    user.done
+
+    ?
+
+    Math.round(
+
+        user.correct
+        /
+        user.done
+        *
+        100
+
+    )
+
+    :
+
+    0;
+
+
+    const topics =
+
+    Object.entries(
+        user.topics
+    )
+
+    .sort(
+        (a,b) =>
+        a[1] - b[1]
+    );
+
+
+    let improveHTML =
+    "";
+
+
+    if(
+        topics.length
+    ){
+
+        improveHTML =
+
+        topics
+
+        .slice(
+            0,
+            3
+        )
+
+        .map(
+
+            ([topic,percent]) => {
+
+                let recommendation =
+                "";
+
+
+                if(
+                    percent < 50
+                ){
+
+                    recommendation =
+
+                    "Necesita mucho refuerzo. Debe estudiar la guía y practicar ejercicios básicos.";
+
+                }
+
+                else if(
+                    percent < 70
+                ){
+
+                    recommendation =
+
+                    "Debe mejorar. Se recomienda volver a estudiar la guía y practicar.";
+
+                }
+
+                else if(
+                    percent < 85
+                ){
+
+                    recommendation =
+
+                    "Está en progreso. Debe continuar practicando.";
+
+                }
+
+                else{
+
+                    recommendation =
+
+                    "Tiene buen dominio del tema.";
+
+                }
+
+
+                return `
+
+                <div class="improve">
+
+                <b>
+
+                ${topic}
+                —
+                ${percent}%
+
+                </b>
+
+                <p
+                style="
+                margin-top:6px;
+                font-size:13px
+                ">
+
+                ${recommendation}
+
+                </p>
+
+                </div>
+
+                `;
+
+            }
+
+        )
+
+        .join("");
+
+    }
+
+    else{
+
+        improveHTML =
+
+        "<p>No hay resultados todavía.</p>";
+
+    }
+
+
+    const history =
+
+    user.history.length
+
+    ?
+
+    user.history
+    .slice()
+    .reverse()
+
+    .map(
+
+        item =>
+
+        `
+
+        <tr>
+
+        <td>
+        ${item.topic}
+        </td>
+
+        <td>
+        ${item.correct}
+        /
+        ${item.total}
+        </td>
+
+        <td>
+        ${item.percent}%
+        </td>
+
+        <td>
+        ${item.date}
+        </td>
+
+        </tr>
+
+        `
+
+    )
+
+    .join("")
+
+    :
+
+    `
+
+    <tr>
+
+    <td colspan="4">
+
+    No hay sesiones registradas.
+
+    </td>
+
+    </tr>
+
+    `;
+
+
+    studentAdminDetail
+    .classList
+    .remove(
+        "hidden"
+    );
+
+
+    studentAdminDetail.innerHTML =
+
+    `
+
+    <h2>
+    ${user.name}
+    </h2>
+
+    <p>
+
+    Usuario:
+    ${user.user}
+
+    ·
+
+    Grado:
+    ${user.grade}
+
+    </p>
+
+
+    <div
+    class="cards"
+    style="margin:20px 0">
+
+    <div class="card">
+
+    <small>
+    Nota general
+    </small>
+
+    <div class="big-number">
+    ${accuracy}%
+    </div>
+
+    </div>
+
+
+    <div class="card">
+
+    <small>
+    Ejercicios
+    </small>
+
+    <div class="big-number">
+    ${user.done}
+    </div>
+
+    </div>
+
+
+    <div class="card">
+
+    <small>
+    Sesiones
+    </small>
+
+    <div class="big-number">
+    ${user.sessions}
+    </div>
+
+    </div>
+
+    </div>
+
+
+    <h3>
+    ¿En qué debe mejorar?
+    </h3>
+
+    ${improveHTML}
+
+
+    <h3
+    style="margin-top:25px">
+
+    Últimas sesiones
+
+    </h3>
+
+
+    <div style="overflow:auto">
+
+    <table class="admin-table">
+
+    <thead>
+
+    <tr>
+
+    <th>Tema</th>
+
+    <th>Resultado</th>
+
+    <th>Nota</th>
+
+    <th>Fecha</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    ${history}
+
+    </tbody>
+
+    </table>
+
+    </div>
+
+
+    <button
+    class="action"
+    style="
+    background:#db5060;
+    margin-top:20px
+    "
+    onclick="deleteStudent(${user.id})">
+
+    Eliminar estudiante
+
+    </button>
+
+    `;
+
+}
+
+
+function deleteStudent(
+id
+){
+
+    if(
+        !confirm(
+        "¿Seguro que deseas eliminar este estudiante?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    users =
+    users.filter(
+
+        user =>
+        user.id !== id
+
+    );
+
+
+    saveUsers();
+
+
+    studentAdminDetail
+    .classList
+    .add(
+        "hidden"
+    );
+
+
+    renderAdmin();
+
+}
+
+</script>
+
+</body>
+</html>
